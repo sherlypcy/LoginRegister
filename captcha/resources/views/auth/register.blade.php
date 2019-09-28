@@ -26,12 +26,25 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="telp" class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="telp" type="tel" class="form-control @error('telp') is-invalid @enderror" name="telp" value="{{ old('telp') }}" required autocomplete="telp">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
-                                @error('telp')
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="contact" class="col-md-4 col-form-label text-md-right">{{ __('Contact') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="contact" type="number " class="form-control @error('contact') is-invalid @enderror" name="contact" value="{{ old('contact')}}" required autocomplete="contact">
+
+                                @error('contact')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -52,7 +65,6 @@
                                 @enderror
                             </div>
                         </div>
-
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
@@ -61,25 +73,23 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="captcha" class="col-md-4 col-form-label text-md-right">{{ __('CAPTCHA') }}</label>
+                        <div class="form-group row"{{ $errors->has('captcha')}}>
+                            <label for="captcha" class="col-md-4 col-form-label text-md-right">Captcha</label>
 
                             <div class="col-md-6">
-                                {!! Captcha::img() !!}
-                            </div>
-                        </div>
+                                <div class="captcha">
+                                    <span>{!! captcha_img() !!}</span>
+                                    <br>
+                                    <br>
 
-                        <div class="form-group row">
-                            <label for="captcha" class="col-md-4 col-form-label text-md-right">{{ __('') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="captcha" type="text" class="form-control @error('captcha') is-invalid @enderror" name="captcha">
-
-                                @error('captcha')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                    <button type="button" class="btn btn-success btn-refresh">Refresh</button>
+                                </div>
+                                <input type="text" id="captcha" class="form-control" placeholder="Enter Captcha" name="captcha">
+                                @if ($errors->has('captcha'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('captcha')}}</strong>
                                     </span>
-                                @enderror
+                                @endif
                             </div>
                         </div>
 
