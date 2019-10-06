@@ -1,14 +1,15 @@
  @extends('layouts.app')
- 
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">List Kategori Artikel</div>
+                <div class="card-header">List Berita</div>
 
                 <div class="card-body">
-                    <a href="{!! route('kategori_artikel.create') !!}" class="btn btn-primary">Tambah Data</a><br>
+                    <a href="{!! route('berita.create') !!}" class="btn btn-primary">Tambah Data</a>
+                    <br>  
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -21,17 +22,19 @@
                             <td>Nama</td>
                             <td>Create_At</td>
                             <td>Update_At</td>
+                            <td>Kategori</td>
                             <td>Aksi</td>
                         </tr>
-                        @foreach($listkategoriartikel as $kategori)
+                        @foreach($listberita as $berita)
                         <tr>
-                            <td>{!!$kategori->id!!}</td>
-                            <td>{!!$kategori->users_id!!}</td>
-                            <td>{!!$kategori->nama!!}</td>
-                            <td>{!!$kategori->created_at!!}</td>
-                            <td>{!!$kategori->updated_at!!}</td>
+                            <td>{!!$berita->id!!}</td>
+                            <td>{!!$berita->users_id!!}</td>
+                            <td>{!!$berita->nama!!}</td>
+                            <td>{!!$berita->created_at!!}</td>
+                            <td>{!!$berita->updated_at!!}</td>
+                            <td>{!!$berita->kategori_berita_id!!}</td>
                             <td>
-                                <a href="{!! route('kategori_artikel.show',[$kategori->id]) !!}" class="btn btn-success">Lihat</a>
+                                <a href="{!! route('berita.show',[$berita->id]) !!}" class="btn btn-success">Lihat</a>
                             </td>
                         </tr>
                         @endforeach
